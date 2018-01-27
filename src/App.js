@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Route} from 'react-router-dom'
+import {Helmet} from 'react-helmet'
 import { AnimatedSwitch } from 'react-router-transition/lib/react-router-transition'
 import './App.css'
 import MainContainer from 'containers/MainContainer.js'
@@ -16,6 +17,10 @@ export default class App extends Component {
   render() {
     return (
     <MainContainer>
+        <Helmet
+          title= {process.env.REACT_APP_APP_NAME}
+          style={[
+          ]}/>
         <AnimatedSwitch
           atEnter={{opacity: 0}}
           atLeave={{opacity: 0}}
