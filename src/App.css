@@ -1,0 +1,21 @@
+html {
+  box-sizing: border-box !important;
+}
+*, *:before, *:after {
+  box-sizing: inherit !important;
+}
+
+body {
+    height: 100%;
+/*   overflow-y: inherit;
+  overflow-x: inherit; */
+}
+
+.switch-wrapper {
+  position: relative;
+}
+
+.switch-wrapper > div {
+  position: absolute;
+  width: 100%;
+}
