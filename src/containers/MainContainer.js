@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export default class MainContainer extends Component {
   static propTypes = {
-    children: PropTypes.object.isRequired,
+    children: PropTypes.array.isRequired,
   }
   static defaultProps = {
     children: null,
