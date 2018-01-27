@@ -24,7 +24,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "fix": "eslint --fix src/. || exit 0",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.16.0",
+    "eslint-plugin-react": "^7.6.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
