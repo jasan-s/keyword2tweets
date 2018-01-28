@@ -1,4 +1,5 @@
-import {fetchTweetsGivenKeyword, saveSearchedKeywordtoFirebase} from 'helpers/api'
+import {fetchTweetsGivenKeyword, saveSearchedKeywordtoFirebase, listenToKeywords} from 'helpers/api'
+import { addListener } from 'redux/modules/listeners'
 
 export const REHYDRATE_COMPLETE = 'REHYDRATE_COMPLETE'
 export const FETCHING_PENDING = 'FETCHING_PENDING'
@@ -8,6 +9,8 @@ export const LOGGING_OUT = 'LOGGING_OUT' // so listen to it in index.js to reset
 export const SAVE_TWEETS_DATA = 'SAVE_TWEETS_DATA'
 export const SET_ERROR = 'SET_ERROR'
 const SET_CURRENT_KEYWORD = 'SET_CURRENT_KEYWORD'
+const SAVE_KEYWORDS = 'SAVE_KEYWORDS'
+const SAVE_KEYWORD_ID_LIST = 'SAVE_KEYWORD_ID_LIST'
 
 export function setRehydrateCompleteFlag() {
   return {
@@ -62,10 +65,24 @@ export function setCurrentKeyword(keyword, timeSearched) {
   }
 }
 
+export function saveKeywords(keywords) {
+  return {
+    type: SAVE_KEYWORDS,
+    keywords,
+  }
+}
+
+export function saveKeywordIdList(keywordIdList) {
+  return {
+    type: SAVE_KEYWORD_ID_LIST,
+    keywordIdList,
+  }
+}
+
 
 // /// THUNKS
 
-export function handlefetchingTweetsGivenKeyword(keyword) {
+export function handlefetchingTweetsGivenKeyword(keyword, recent=false) {
   return async (dispatch, getState) => {
     // incase the currentKeyword is the same as incoming keyword && it has been less than 1 minute return without fetching from Twitter
     keyword = keyword.trim().toLowerCase()
@@ -83,7 +100,9 @@ export function handlefetchingTweetsGivenKeyword(keyword) {
       const timeNow = Date.now()
       dispatch(setCurrentKeyword(result.data.keyword, timeNow))
       dispatch(setFetchingSuccess())
-      saveSearchedKeywordtoFirebase(result.data.keyword)
+      if(!recent) {
+        saveSearchedKeywordtoFirebase(result.data.keyword)
+      }
       process.env.NODE_ENV === 'production' ? null : console.log('tweets Data Succecsfully fecthed from twitter')
       return
     } catch (error) {
@@ -95,6 +114,21 @@ export function handlefetchingTweetsGivenKeyword(keyword) {
   }
 }
 
+export function setKewordsListener () {
+  return (dispatch, getState) => {
+    if (getState().listeners[`keywords`] === true) {
+      return
+    }
+    dispatch(addListener(`keywords`))
+    listenToKeywords(({keywords, keywordIdList}) => {
+    dispatch(saveKeywords(keywords))
+    dispatch(saveKeywordIdList(keywordIdList))
+    }, (error) => {
+      process.env.NODE_ENV === 'production' ? null : console.log('setKewordsListener Listner Error: ', error)
+    })
+  }
+}
+
 const initialState = {
   fetching: false,
   rehydrationComplete: false,
@@ -102,6 +136,8 @@ const initialState = {
   currentKeyword: null,
   currentKeywordTimeSearched: null, 
   tweetsData: {},
+  keywords: {},
+  keywordIdList: [],
 }
 
 function addTweetData(state={}, action) {
@@ -115,6 +151,15 @@ function addTweetData(state={}, action) {
    default:
       return state
     }
+}
+
+function addKeywords (state = {}, action) {
+  switch (action.type) {
+    case SAVE_KEYWORDS :
+      return {...action.keywords}
+    default :
+      return state
+  }
 }
 
 export default function main(state = initialState, action) {
@@ -146,6 +191,10 @@ export default function main(state = initialState, action) {
         ...state,
         tweetsData: addTweetData(state['tweetsData'], action),
       }
+  case SAVE_KEYWORDS :
+      return {...state, keywords: addKeywords(state['keywords'], action)}
+  case SAVE_KEYWORD_ID_LIST :
+      return { ...state, keywordIdList: action.keywordIdList}
     case REHYDRATE_COMPLETE:
       return {
         ...state,
