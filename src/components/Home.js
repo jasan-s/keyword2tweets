@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Helmet} from 'react-helmet'
-import { Input } from 'semantic-ui-react'
+import { Input, Image } from 'semantic-ui-react'
 import styled from 'styled-components'
+import logo from 'media/logo.png'
 
 export default function Home(props) {
   const {userEnteredKeyword, handleInputChange, handleSearchSubmit} = props
@@ -20,6 +21,7 @@ export default function Home(props) {
           <meta name='twitter:title' content='Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter.'/>
           <meta name='twitter:description' content='The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist.'/>
       </Helmet>
+      <Logo><Image src={logo} alt='bird tweeting'/> </Logo>
       <StyledSearchDiv>
         <StyledLargeHeader>Keyword2Tweets</StyledLargeHeader>
         <StyledSubHeader>Enter keyword to see the most recent tweets matching the keyword</StyledSubHeader>
@@ -51,6 +53,13 @@ const StyledSearchDiv = styled('div')`
   justify-content: center;
   align-items: center;
 
+`
+const Logo = styled('div')`
+  margin-top: 2vh;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 `
 
 const StyledInput = styled(Input)`
