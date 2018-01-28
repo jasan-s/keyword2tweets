@@ -9,7 +9,7 @@ import RecentlySearchedKeywordItem from 'components/RecentlySearchedKeywordItem'
 
 
 export default function Home(props) {
-  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching, keywords, keywordIdList} = props
+  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching, keywords, keywordIdList, error} = props
   let emptyTweetArray = false
   let currentKeywordTweets = []
   if (tweetsData[currentKeyword] !== undefined) {
@@ -42,6 +42,7 @@ export default function Home(props) {
         onChange={handleInputChange} placeholder='Keyword...' />
         <Button disabled= {fetching || userEnteredKeyword === '' || userEnteredKeyword === undefined} onClick={handleSearchSubmit} >Search</Button>
         </StyledSearchDiv>
+
         <KeywordsHeading>&darr; &nbsp; recently searched keywords &nbsp; &darr;</KeywordsHeading>
         <KeywordsDiv>
         {keywordIdList.length > 0 && Object.keys(keywords).length > 0
@@ -57,6 +58,9 @@ export default function Home(props) {
           </List>
            : null}
         </KeywordsDiv>
+       {error
+        ?<EmptyMessage> {error}</EmptyMessage>
+        :null}
         <TweetList>
         {currentKeywordTweets.length > 0
            ? <div>
