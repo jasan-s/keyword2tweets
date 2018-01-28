@@ -8,13 +8,18 @@ export default class HomeContainer extends Component {
   static defaultProps = {}
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {userEnteredKeyword: ''}
   }
 
+   handleInputChange = (e, { value }) => {
+    this.setState({userEnteredKeyword: value})
+  }
   render() {
     return (
       <div>
-        <Home />
+        <Home
+        handleInputChange={this.handleInputChange}
+        userEnteredKeyword={this.state.userEnteredKeyword}/>
       </div>
     )
   }

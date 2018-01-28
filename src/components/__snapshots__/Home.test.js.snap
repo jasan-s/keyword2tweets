@@ -1,0 +1,511 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders properly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Home
+    userEnteredKeyword=""
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <HelmetWrapper
+          defer={true}
+          encodeSpecialCharacters={true}
+>
+          <title>
+                     
+                    Keyword2Tweets
+          </title>
+          <meta
+                    content="https://Keyword2Tweets.firebaseapp.com"
+                    name="og:url"
+          />
+          <meta
+                    content="website"
+                    name="og:type"
+          />
+          <meta
+                    content="Keyword2Tweets"
+                    name="og:site_name"
+          />
+          <meta
+                    content="Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter."
+                    name="og:title"
+          />
+          <meta
+                    content="The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist."
+                    name="og:description"
+          />
+          <meta
+                    content="summary"
+                    name="twitter:card"
+          />
+          <meta
+                    content="Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter."
+                    name="twitter:title"
+          />
+          <meta
+                    content="The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist."
+                    name="twitter:description"
+          />
+</HelmetWrapper>,
+        <Input
+          className="search-box"
+          icon="search"
+          onChange={undefined}
+          placeholder="Search..."
+          type="text"
+          value=""
+/>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <title>
+               
+              Keyword2Tweets
+</title>,
+            <meta
+              content="https://Keyword2Tweets.firebaseapp.com"
+              name="og:url"
+/>,
+            <meta
+              content="website"
+              name="og:type"
+/>,
+            <meta
+              content="Keyword2Tweets"
+              name="og:site_name"
+/>,
+            <meta
+              content="Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter."
+              name="og:title"
+/>,
+            <meta
+              content="The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist."
+              name="og:description"
+/>,
+            <meta
+              content="summary"
+              name="twitter:card"
+/>,
+            <meta
+              content="Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter."
+              name="twitter:title"
+/>,
+            <meta
+              content="The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist."
+              name="twitter:description"
+/>,
+          ],
+          "defer": true,
+          "encodeSpecialCharacters": true,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                " ",
+                "Keyword2Tweets",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              " ",
+              "Keyword2Tweets",
+            ],
+            "type": "title",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "content": "https://Keyword2Tweets.firebaseapp.com",
+              "name": "og:url",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "meta",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "content": "website",
+              "name": "og:type",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "meta",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "content": "Keyword2Tweets",
+              "name": "og:site_name",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "meta",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "content": "Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter.",
+              "name": "og:title",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "meta",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "content": "The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist.",
+              "name": "og:description",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "meta",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "content": "summary",
+              "name": "twitter:card",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "meta",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "content": "Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter.",
+              "name": "twitter:title",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "meta",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "content": "The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist.",
+              "name": "twitter:description",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "meta",
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "className": "search-box",
+          "icon": "search",
+          "onChange": undefined,
+          "placeholder": "Search...",
+          "type": "text",
+          "value": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <HelmetWrapper
+            defer={true}
+            encodeSpecialCharacters={true}
+>
+            <title>
+                         
+                        Keyword2Tweets
+            </title>
+            <meta
+                        content="https://Keyword2Tweets.firebaseapp.com"
+                        name="og:url"
+            />
+            <meta
+                        content="website"
+                        name="og:type"
+            />
+            <meta
+                        content="Keyword2Tweets"
+                        name="og:site_name"
+            />
+            <meta
+                        content="Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter."
+                        name="og:title"
+            />
+            <meta
+                        content="The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist."
+                        name="og:description"
+            />
+            <meta
+                        content="summary"
+                        name="twitter:card"
+            />
+            <meta
+                        content="Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter."
+                        name="twitter:title"
+            />
+            <meta
+                        content="The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist."
+                        name="twitter:description"
+            />
+</HelmetWrapper>,
+          <Input
+            className="search-box"
+            icon="search"
+            onChange={undefined}
+            placeholder="Search..."
+            type="text"
+            value=""
+/>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <title>
+                 
+                Keyword2Tweets
+</title>,
+              <meta
+                content="https://Keyword2Tweets.firebaseapp.com"
+                name="og:url"
+/>,
+              <meta
+                content="website"
+                name="og:type"
+/>,
+              <meta
+                content="Keyword2Tweets"
+                name="og:site_name"
+/>,
+              <meta
+                content="Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter."
+                name="og:title"
+/>,
+              <meta
+                content="The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist."
+                name="og:description"
+/>,
+              <meta
+                content="summary"
+                name="twitter:card"
+/>,
+              <meta
+                content="Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter."
+                name="twitter:title"
+/>,
+              <meta
+                content="The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist."
+                name="twitter:description"
+/>,
+            ],
+            "defer": true,
+            "encodeSpecialCharacters": true,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  " ",
+                  "Keyword2Tweets",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                " ",
+                "Keyword2Tweets",
+              ],
+              "type": "title",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "content": "https://Keyword2Tweets.firebaseapp.com",
+                "name": "og:url",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "meta",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "content": "website",
+                "name": "og:type",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "meta",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "content": "Keyword2Tweets",
+                "name": "og:site_name",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "meta",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "content": "Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter.",
+                "name": "og:title",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "meta",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "content": "The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist.",
+                "name": "og:description",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "meta",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "content": "summary",
+                "name": "twitter:card",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "meta",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "content": "Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter.",
+                "name": "twitter:title",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "meta",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "content": "The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist.",
+                "name": "twitter:description",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "meta",
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "className": "search-box",
+            "icon": "search",
+            "onChange": undefined,
+            "placeholder": "Search...",
+            "type": "text",
+            "value": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

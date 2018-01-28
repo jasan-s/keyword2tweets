@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Helmet} from 'react-helmet'
+import { Input } from 'semantic-ui-react'
 
 export default function Home(props) {
+  const {userEnteredKeyword, handleInputChange} = props
   return (
     <div>
         <Helmet>
@@ -17,11 +19,18 @@ export default function Home(props) {
           <meta name='twitter:title' content='Keyword2Tweets – Given a keyword, retrieves 10 most recet tweets from twitter.'/>
           <meta name='twitter:description' content='The App allows user to enter in a keyword retrieve 10 most recent tweets(using Twitter API) if they exist.'/>
       </Helmet>
-      Home
+        <Input className='search-box' value= {userEnteredKeyword} icon='search'
+        onChange={handleInputChange} placeholder='Enter Keyword...' />
+
     </div>
   )
 }
 
-Home.propTypes = {}
+Home.propTypes = {
+  userEnteredKeyword: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+}
 
-Home.defaultProps = {}
+Home.defaultProps = {
+  userEnteredKeyword: '',
+}
