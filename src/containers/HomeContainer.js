@@ -10,11 +10,21 @@ class HomeContainer extends Component {
 
   static propTypes = {
     handlefetchingTweetsGivenKeyword: PropTypes.func.isRequired,
+    setKewordsListener: PropTypes.func.isRequired,
+    tweetsData: PropTypes.object,
+    currentKeyword: PropTypes.string,
+    keywords: PropTypes.object,
+    keywordIdList: PropTypes.array,
+    fetching: PropTypes.bool.isRequired,
   }
   static defaultProps = {}
   constructor(props) {
     super(props)
     this.state = {userEnteredKeyword: ''}
+  }
+
+  componentDidMount() {
+    this.props.setKewordsListener()
   }
 
   handleInputChange = (e, { value }) => {
@@ -26,16 +36,26 @@ class HomeContainer extends Component {
     this.setState({userEnteredKeyword: ''})
   }
 
+  handleRecentKeywordClick = async (e, { value }) => {
+    console.log('value: ', value)
+    await this.props.handlefetchingTweetsGivenKeyword(value, true)
+    this.setState({userEnteredKeyword: ''})
+  }
+
   render() {
+    const {tweetsData, currentKeyword, fetching, keywords, keywordIdList } = this.props
     return (
       <div>
         <Home
         handleSearchSubmit={this.handleSearchSubmit}
         handleInputChange={this.handleInputChange}
         userEnteredKeyword={this.state.userEnteredKeyword}
-        tweetsData={this.props.tweetsData}
-        currentKeyword= {this.props.currentKeyword}
-        />
+        tweetsData={tweetsData}
+        currentKeyword= {currentKeyword}
+        fetching={fetching}
+        keywords={keywords}
+        keywordIdList={keywordIdList}
+        handleRecentKeywordClick={this.handleRecentKeywordClick}/>
       </div>
     )
   }
@@ -45,12 +65,14 @@ class HomeContainer extends Component {
 
 
 function mapStateToProps ({main}, props) {
-  const {fetching, error, tweetsData, currentKeyword} = main
+  const {fetching, error, tweetsData, currentKeyword, keywords, keywordIdList} = main
   return {
     fetching,
     error,
     tweetsData,
     currentKeyword,
+    keywords,
+    keywordIdList,
   }
 }
 

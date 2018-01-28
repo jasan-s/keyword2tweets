@@ -5,9 +5,11 @@ import { Input, Image, List } from 'semantic-ui-react'
 import styled from 'styled-components'
 import logo from 'media/logo.png'
 import TweetListItem from 'components/TweetListItem'
+import RecentlySearchedKeywordItem from 'components/RecentlySearchedKeywordItem'
+
 
 export default function Home(props) {
-  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching} = props
+  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching, keywordIdList} = props
   let emptyTweetArray = false
   let currentKeywordTweets = []
   if (tweetsData[currentKeyword] !== undefined) {
@@ -40,6 +42,21 @@ export default function Home(props) {
         onChange={handleInputChange} placeholder='Keyword...' />
         <Button disabled= {fetching || userEnteredKeyword === '' || userEnteredKeyword === undefined} onClick={handleSearchSubmit} >Search</Button>
         </StyledSearchDiv>
+        <KeywordsHeading>&darr; &nbsp; recently searched keywords &nbsp; &darr;</KeywordsHeading>
+        <KeywordsDiv>
+        {keywordIdList.length > 0
+           ? <List horizontal>
+            {keywordIdList.map((keywordId, index) => (
+            <RecentlySearchedKeywordItem
+            keywordId={keywordId}
+            key={keywordId}
+            index={index}
+            {...props}/>
+            ))
+            }
+          </List>
+           : null}
+        </KeywordsDiv>
         <TweetList>
         {currentKeywordTweets.length > 0
            ? <List celled={true}>
@@ -66,6 +83,10 @@ Home.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleSearchSubmit: PropTypes.func.isRequired,
   currentKeywordTweets: PropTypes.array,
+  tweetsData: PropTypes.object,
+  currentKeyword: PropTypes.string,
+  fetching: PropTypes.bool.isRequired,
+  keywordIdList: PropTypes.array,
 }
 
 Home.defaultProps = {
@@ -148,4 +169,24 @@ const EmptyMessage = styled('div')`
   padding-left: 2vw;
   padding-right: 2vw;
   color: tomato;
+`
+const KeywordsHeading = styled('div')`
+  display: flex;
+  margin-bottom: 2vh;
+  margin-top: 2vh; 
+  text-align: center;
+  flex-direction: row;
+  justify-content: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
+`
+const KeywordsDiv = styled('div')`
+  display: flex;
+  margin-bottom: 2vh;
+  margin-top: 2vh; 
+  text-align: center;
+  flex-direction: row;
+  justify-content: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
 `
