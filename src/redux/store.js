@@ -4,7 +4,7 @@ import reduxThunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import {autoRehydrate, persistStore} from 'redux-persist'
 import {REHYDRATE} from 'redux-persist/constants'
-// import {createFilter, createBlacklistFilter} from 'redux-persist-transform-filter'
+import {createFilter, createBlacklistFilter} from 'redux-persist-transform-filter'
 import createActionBuffer from 'redux-action-buffer'
 import createMigration from 'redux-persist-migrate'
 import * as reducers from 'redux/modules'
@@ -50,6 +50,10 @@ export const configureStore = async () => {
       // //in this example after migrations run `state.app.version` will equal `2`
       const reducerKey = 'app'
       const migration = createMigration(manifest, reducerKey)
+
+             // for blacklisting subset of wordofmouth reducer : save everything else
+      const saveSubsetFilterA = createFilter('main', [
+      ])
       // // Add the reducer to your store on the `router` key
       // // Also apply our middleware for navigating
       const store = createStore(
@@ -76,7 +80,7 @@ export const configureStore = async () => {
         {
           storage: localforage,
           blacklist: ['form', 'navigation', 'listeners'],
-          transforms: [],
+          transforms: [saveSubsetFilterA],
         },
         () => {
           // process.env.NODE_ENV === 'production' ? null : console.log('rehydration complete')
