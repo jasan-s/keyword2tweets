@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Home from 'components/Home'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as ActionCreators from 'redux/modules/main'
+import { withRouter } from 'react-router-dom'
 
-export default class HomeContainer extends Component {
+class HomeContainer extends Component {
 
   static propTypes = {}
   static defaultProps = {}
@@ -15,6 +19,10 @@ export default class HomeContainer extends Component {
     this.setState({userEnteredKeyword: value})
   }
 
+  componentDidMount() {
+    this.props.handlefetchingTweetsGivenKeyword('nfl')
+  }
+
   render() {
     return (
       <div>
@@ -25,3 +33,18 @@ export default class HomeContainer extends Component {
     )
   }
 }
+
+
+
+
+function mapStateToProps (state, props) {
+  return {
+  }
+}
+
+function mapDispatchToProps (dispatch, props) {
+  return bindActionCreators(ActionCreators, dispatch)
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeContainer))
+
