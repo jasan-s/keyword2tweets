@@ -4,14 +4,14 @@ import { Image, List, Icon, Label } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 export default function TweetListItem(props) {
-	const {tweet} = props
+	const {tweet, index} = props
 	const tweetLink = `https://twitter.com/twitterapi/status/${tweet.id_str}`
 	const tweettext = tweet.text
 	const profileImg = tweet.user.profile_image_url_https
   return (
-    <List.Item as='li' style={{width: '92vw'}}>
+    <List.Item style={{width: '92vw'}}>
       <List.Content>
-        <List.Header>{tweettext || ''}</List.Header>
+        <List.Header>{index+1}:&nbsp;  {tweettext || ''}</List.Header>
         <List.Description><Label as='a' href={`${tweetLink}`} target='_blank'> Link to tweet</Label>&nbsp;  &nbsp; posted by: <Image avatar={true} src={profileImg}/> &nbsp; {tweet.screen_name}</List.Description> 
       </List.Content>
     </List.Item>
