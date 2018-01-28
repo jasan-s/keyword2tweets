@@ -111,7 +111,7 @@ const Button = styled.button`
   border: 1px solid grey;
   cursor: pointer;
   &:hover {
-  border: 2px solid grey;
+  border: 1px solid grey;
   background: grey;
   color: white;}
 `
