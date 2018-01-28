@@ -33,7 +33,6 @@ class HomeContainer extends Component {
         handleSearchSubmit={this.handleSearchSubmit}
         handleInputChange={this.handleInputChange}
         userEnteredKeyword={this.state.userEnteredKeyword}
-        currentKeyword={this.state.currentKeyword}
         tweetsData={this.props.tweetsData}
         currentKeyword= {this.props.currentKeyword}
         />
