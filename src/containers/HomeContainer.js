@@ -11,9 +11,10 @@ export default class HomeContainer extends Component {
     this.state = {userEnteredKeyword: ''}
   }
 
-   handleInputChange = (e, { value }) => {
+  handleInputChange = (e, { value }) => {
     this.setState({userEnteredKeyword: value})
   }
+
   render() {
     return (
       <div>
