@@ -7,7 +7,7 @@ import logo from 'media/logo.png'
 import TweetListItem from 'components/TweetListItem'
 
 export default function Home(props) {
-  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword} = props
+  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching} = props
   let emptyTweetArray = false
   let currentKeywordTweets = []
   if (tweetsData[currentKeyword] !== undefined) {
@@ -36,9 +36,9 @@ export default function Home(props) {
       <StyledSearchDiv>
         <StyledLargeHeader>Keyword2Tweets</StyledLargeHeader>
         <StyledSubHeader>Enter keyword to see the most recent tweets matching the keyword</StyledSubHeader>
-        <StyledInput className='search-box' value= {userEnteredKeyword}
+        <StyledInput disabled= {fetching} className='search-box' value= {userEnteredKeyword}
         onChange={handleInputChange} placeholder='Keyword...' />
-        <Button onClick={handleSearchSubmit} >Search</Button>
+        <Button disabled= {fetching || userEnteredKeyword === '' || userEnteredKeyword === undefined} onClick={handleSearchSubmit} >Search</Button>
         </StyledSearchDiv>
         <TweetList>
         {currentKeywordTweets.length > 0
