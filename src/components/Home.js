@@ -42,7 +42,7 @@ export default function Home(props) {
         </StyledSearchDiv>
         <TweetList>
         {currentKeywordTweets.length > 0
-           ? <List celled>
+           ? <List celled={true}>
             {currentKeywordTweets.map((tweet, index) => (
             <TweetListItem
             tweet={tweet}
@@ -54,7 +54,7 @@ export default function Home(props) {
           </List>
            : null}
           {emptyTweetArray === true && currentKeywordTweets.length === 0
-            ? <EmptyMessage>There does not seem to be any recent tweets for the word '{currentKeyword}'.</EmptyMessage>
+            ? <EmptyMessage>There does not seem to be any recent tweets for the word {currentKeyword}.</EmptyMessage>
             :null}
         </TweetList>
     </div>

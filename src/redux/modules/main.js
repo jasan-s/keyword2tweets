@@ -54,10 +54,11 @@ export function saveTweetsData(keyword, tweetsData) {
   }
 }
 
-export function setCurrentKeyword(keyword) {
+export function setCurrentKeyword(keyword, timeSearched) {
   return {
     type: SET_CURRENT_KEYWORD,
     keyword,
+    timeSearched,
   }
 }
 
@@ -65,12 +66,21 @@ export function setCurrentKeyword(keyword) {
 // /// THUNKS
 
 export function handlefetchingTweetsGivenKeyword(keyword) {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    // incase the currentKeyword is the same as incoming keyword && it has been less than 1 minute return without fetching from Twitter
+    if(getState().main.currentKeyword === keyword) {
+        const timeNow = Date.now()
+        const timeElapsed = timeNow - getState().main.currentKeywordTimeSearched
+        if(timeElapsed <= 60000) {
+          return
+        }
+    }
     dispatch(setFetchingStart())
     try {
       const result = await fetchTweetsGivenKeyword(keyword)
       dispatch(saveTweetsData(result.data.keyword, result.data.tweetsData.statuses))
-      dispatch(setCurrentKeyword(result.data.keyword))
+      const timeNow = Date.now()
+      dispatch(setCurrentKeyword(result.data.keyword, timeNow))
       dispatch(setFetchingSuccess())
       process.env.NODE_ENV === 'production' ? null : console.log('tweets Data Succecsfully fecthed from twitter')
       return
@@ -88,6 +98,7 @@ const initialState = {
   rehydrationComplete: false,
   error: null,
   currentKeyword: null,
+  currentKeywordTimeSearched: null, 
   tweetsData: {},
 }
 
@@ -126,6 +137,7 @@ export default function main(state = initialState, action) {
       return {
         ...state,
         currentKeyword: action.keyword,
+        currentKeywordTimeSearched: action.timeSearched,
       }
     case SAVE_TWEETS_DATA:
       return {
