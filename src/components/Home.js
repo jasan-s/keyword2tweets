@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Helmet} from 'react-helmet'
-import { Input, Image, List } from 'semantic-ui-react'
+import { Input, Image, List, Label } from 'semantic-ui-react'
 import styled from 'styled-components'
 import logo from 'media/logo.png'
 import TweetListItem from 'components/TweetListItem'
@@ -9,7 +9,7 @@ import RecentlySearchedKeywordItem from 'components/RecentlySearchedKeywordItem'
 
 
 export default function Home(props) {
-  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching, keywordIdList} = props
+  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching, keywords, keywordIdList} = props
   let emptyTweetArray = false
   let currentKeywordTweets = []
   if (tweetsData[currentKeyword] !== undefined) {
@@ -44,7 +44,7 @@ export default function Home(props) {
         </StyledSearchDiv>
         <KeywordsHeading>&darr; &nbsp; recently searched keywords &nbsp; &darr;</KeywordsHeading>
         <KeywordsDiv>
-        {keywordIdList.length > 0
+        {keywordIdList.length > 0 && Object.keys(keywords).length > 0
            ? <List horizontal>
             {keywordIdList.map((keywordId, index) => (
             <RecentlySearchedKeywordItem
@@ -59,7 +59,9 @@ export default function Home(props) {
         </KeywordsDiv>
         <TweetList>
         {currentKeywordTweets.length > 0
-           ? <List celled={true}>
+           ? <div>
+           <ListHeading >Recent Tweets Matching: &nbsp; {currentKeyword} </ListHeading>
+           <List celled={true}>
             {currentKeywordTweets.map((tweet, index) => (
             <TweetListItem
             tweet={tweet}
@@ -69,6 +71,7 @@ export default function Home(props) {
             ))
             }
           </List>
+          </div>
            : null}
           {emptyTweetArray === true && currentKeywordTweets.length === 0
             ? <EmptyMessage>There does not seem to be any recent tweets for the word {currentKeyword}.</EmptyMessage>
@@ -189,4 +192,19 @@ const KeywordsDiv = styled('div')`
   justify-content: center;
   padding-left: 2vw;
   padding-right: 2vw;
+`
+
+const ListHeading = styled('div')`
+  margin-bottom: 2vh;
+  width:100%;
+  margin-top: 2vh; 
+  font-size: 1.6em;
+  text-align: center;
+  background: #0490e3;
+  color: white;
+  padding: 12px 12px;
+  border-radius: 4px;
+  @media (max-width:420px) {
+   font-size: 0.86em;
+  } 
 `

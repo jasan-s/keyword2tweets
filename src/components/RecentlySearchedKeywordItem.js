@@ -5,10 +5,16 @@ import styled from 'styled-components'
 
 export default function RecentlySearchedKeywordItem(props) {
 	const {keywordId, keywords, handleRecentKeywordClick} = props
+	let keyword = null
+	if(keywords[keywordId] !== undefined) {
+		keyword = keywords[keywordId].keyword
+	}
   return (
-    <List.Item>
-      <StyledLabel value={keywords[keywordId].keyword} onClick={handleRecentKeywordClick}>{keywords[keywordId].keyword}</StyledLabel>
+		keyword
+		? <List.Item>
+      <StyledLabel value={keyword} onClick={handleRecentKeywordClick}>{keyword}</StyledLabel>
     </List.Item>
+    : null
   )
 }
 
