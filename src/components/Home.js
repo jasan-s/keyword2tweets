@@ -1,12 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Helmet} from 'react-helmet'
-import { Input, Image } from 'semantic-ui-react'
+import { Input, Image, List } from 'semantic-ui-react'
 import styled from 'styled-components'
 import logo from 'media/logo.png'
+import TweetListItem from 'components/TweetListItem'
 
 export default function Home(props) {
-  const {userEnteredKeyword, handleInputChange, handleSearchSubmit} = props
+  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword} = props
+  let emptyTweetArray = false
+  let currentKeywordTweets = []
+  if (tweetsData[currentKeyword] !== undefined) {
+    if (tweetsData[currentKeyword].length === 0) {
+      emptyTweetArray = true
+    } else {
+      currentKeywordTweets = tweetsData[currentKeyword]
+    }
+ }
+
   return (
     <div>
         <Helmet>
@@ -29,7 +40,23 @@ export default function Home(props) {
         onChange={handleInputChange} placeholder='Keyword...' />
         <Button onClick={handleSearchSubmit} >Search</Button>
         </StyledSearchDiv>
-
+        <TweetList>
+        {currentKeywordTweets.length > 0
+           ? <List as='ol' relaxed={true} divided={true}>
+            {currentKeywordTweets.map((tweet, index) => (
+            <TweetListItem
+            tweet={tweet}
+            key={tweet.id}
+            index={index}
+            {...props}/>
+            ))
+            }
+          </List>
+           : null}
+          {emptyTweetArray === true && currentKeywordTweets.length === 0
+            ? <EmptyMessage>There does not seem to be any recent tweets for the word '{currentKeyword}'.</EmptyMessage>
+            :null}
+        </TweetList>
     </div>
   )
 }
@@ -38,6 +65,7 @@ Home.propTypes = {
   userEnteredKeyword: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSearchSubmit: PropTypes.func.isRequired,
+  currentKeywordTweets: PropTypes.array,
 }
 
 Home.defaultProps = {
@@ -63,15 +91,15 @@ const Logo = styled('div')`
 `
 
 const StyledInput = styled(Input)`
-width: 320px;
-max-width: 92vw;
-margin-bottom: 2vh;
-border-radius: 2px;
-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
-&:hover {
-  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
-}
+  width: 320px;
+  max-width: 92vw;
+  margin-bottom: 2vh;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  &:hover {
+    box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  }
 `
 
 const Button = styled.button`
@@ -103,4 +131,21 @@ const StyledSubHeader = styled('div')`
    font-size: 0.86em;
   } 
 
+`
+
+const TweetList = styled('div')`
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const EmptyMessage = styled('div')`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  color: tomato;
 `

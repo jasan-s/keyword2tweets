@@ -32,7 +32,11 @@ class HomeContainer extends Component {
         <Home
         handleSearchSubmit={this.handleSearchSubmit}
         handleInputChange={this.handleInputChange}
-        userEnteredKeyword={this.state.userEnteredKeyword}/>
+        userEnteredKeyword={this.state.userEnteredKeyword}
+        currentKeyword={this.state.currentKeyword}
+        tweetsData={this.props.tweetsData}
+        currentKeyword= {this.props.currentKeyword}
+        />
       </div>
     )
   }
@@ -41,8 +45,13 @@ class HomeContainer extends Component {
 
 
 
-function mapStateToProps (state, props) {
+function mapStateToProps ({main}, props) {
+  const {fetching, error, tweetsData, currentKeyword} = main
   return {
+    fetching,
+    error,
+    tweetsData,
+    currentKeyword,
   }
 }
 

@@ -7,6 +7,7 @@ export const FETCHING_REJECTED = 'FETCHING_REJECTED'
 export const LOGGING_OUT = 'LOGGING_OUT' // so listen to it in index.js to reset entire redux store to intial state all in one go instead of resseting it at each reducer
 export const SAVE_TWEETS_DATA = 'SAVE_TWEETS_DATA'
 export const SET_ERROR = 'SET_ERROR'
+const SET_CURRENT_KEYWORD = 'SET_CURRENT_KEYWORD'
 
 export function setRehydrateCompleteFlag() {
   return {
@@ -53,6 +54,13 @@ export function saveTweetsData(keyword, tweetsData) {
   }
 }
 
+export function setCurrentKeyword(keyword) {
+  return {
+    type: SET_CURRENT_KEYWORD,
+    keyword,
+  }
+}
+
 
 // /// THUNKS
 
@@ -62,6 +70,7 @@ export function handlefetchingTweetsGivenKeyword(keyword) {
     try {
       const result = await fetchTweetsGivenKeyword(keyword)
       dispatch(saveTweetsData(result.data.keyword, result.data.tweetsData.statuses))
+      dispatch(setCurrentKeyword(result.data.keyword))
       dispatch(setFetchingSuccess())
       process.env.NODE_ENV === 'production' ? null : console.log('tweets Data Succecsfully fecthed from twitter')
       return
@@ -78,6 +87,7 @@ const initialState = {
   fetching: false,
   rehydrationComplete: false,
   error: null,
+  currentKeyword: null,
   tweetsData: {},
 }
 
@@ -111,6 +121,11 @@ export default function main(state = initialState, action) {
       return {
         ...state,
         error: action.error,
+      }
+    case SET_CURRENT_KEYWORD:
+      return {
+        ...state,
+        currentKeyword: action.keyword,
       }
     case SAVE_TWEETS_DATA:
       return {
