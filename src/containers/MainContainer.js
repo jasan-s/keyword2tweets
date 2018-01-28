@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Dimmer, Loader} from 'semantic-ui-react'
+import { Loader} from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as ActionCreators from 'redux/modules/main'
@@ -10,6 +10,7 @@ import styled from 'styled-components'
 class MainContainer extends Component {
   static propTypes = {
     children: PropTypes.array.isRequired,
+    fetching: PropTypes.bool.isRequired,
   }
   static defaultProps = {
     children: null,
@@ -22,7 +23,7 @@ class MainContainer extends Component {
     return (
       <div>
       {this.props.fetching
-        ? <StyledLoader active size='massive'></StyledLoader>
+        ? <StyledLoader active={true} size='massive'></StyledLoader>
         : null }
         {this.props.children}
       </div>
