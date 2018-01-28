@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && react-snap && sw-precache --config=sw-precache-config.js && uglifyjs build/service-worker.js -o build/service-worker.js && rimraf build/404.html",
     "fix": "eslint --fix src/. || exit 0",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -39,6 +39,18 @@
     "eslint": "^4.16.0",
     "eslint-plugin-react": "^7.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "react-test-renderer": "^16.2.0"
+    "react-snap": "^1.11.0",
+    "react-test-renderer": "^16.2.0",
+    "rimraf": "^2.6.2",
+    "uglifyjs": "^2.4.11"
+  },
+  "reactSnap": {
+    "include": [
+      "/"
+    ],
+    "minifyHtml": {
+      "sortClassName": false
+    },
+    "inlineCss": true
   }
 }
