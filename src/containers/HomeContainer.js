@@ -31,9 +31,18 @@ class HomeContainer extends Component {
     this.setState({userEnteredKeyword: value})
   }
 
+  handleOnEnter  = async (e) => {
+    if(e.key === 'Enter' && (this.state.userEnteredKeyword).trim() !== ''){
+      await this.props.handlefetchingTweetsGivenKeyword(this.state.userEnteredKeyword)
+      this.setState({userEnteredKeyword: ''})
+    }
+  } 
+
   handleSearchSubmit = async () => {
-    await this.props.handlefetchingTweetsGivenKeyword(this.state.userEnteredKeyword)
-    this.setState({userEnteredKeyword: ''})
+    if((this.state.userEnteredKeyword).trim() !== '') {
+      await this.props.handlefetchingTweetsGivenKeyword(this.state.userEnteredKeyword)
+      this.setState({userEnteredKeyword: ''}) 
+    }
   }
 
   handleRecentKeywordClick = async (e, { value }) => {
@@ -55,7 +64,8 @@ class HomeContainer extends Component {
         keywords={keywords}
         keywordIdList={keywordIdList}
         handleRecentKeywordClick={this.handleRecentKeywordClick}
-        error={error}/>
+        error={error}
+        handleOnEnter={this.handleOnEnter}/>
       </div>
     )
   }

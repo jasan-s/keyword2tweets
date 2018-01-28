@@ -9,7 +9,7 @@ import RecentlySearchedKeywordItem from 'components/RecentlySearchedKeywordItem'
 
 
 export default function Home(props) {
-  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching, keywords, keywordIdList, error} = props
+  const {userEnteredKeyword, handleInputChange, handleSearchSubmit, tweetsData, currentKeyword, fetching, keywords, keywordIdList, error, handleOnEnter} = props
   let emptyTweetArray = false
   let currentKeywordTweets = []
   if (tweetsData[currentKeyword] !== undefined) {
@@ -39,7 +39,7 @@ export default function Home(props) {
         <StyledLargeHeader>Keyword2Tweets</StyledLargeHeader>
         <StyledSubHeader>Enter keyword to see the most recent tweets matching the keyword</StyledSubHeader>
         <StyledInput disabled= {fetching} className='search-box' value= {userEnteredKeyword}
-        onChange={handleInputChange} placeholder='Keyword...' />
+        onChange={handleInputChange} onKeyPress= {handleOnEnter} placeholder='Keyword...' />
         <Button disabled= {fetching || userEnteredKeyword === '' || userEnteredKeyword === undefined} onClick={handleSearchSubmit} >Search</Button>
         </StyledSearchDiv>
 

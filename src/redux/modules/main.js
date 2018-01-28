@@ -86,6 +86,7 @@ export function handlefetchingTweetsGivenKeyword(keyword, recent=false) {
   return async (dispatch, getState) => {
     // incase the currentKeyword is the same as incoming keyword && it has been less than 1 minute return without fetching from Twitter
     keyword = keyword.trim().toLowerCase()
+    dispatch(setError(null))
     if(getState().main.currentKeyword === keyword) {
         const timeNow = Date.now()
         const timeElapsed = timeNow - getState().main.currentKeywordTimeSearched
