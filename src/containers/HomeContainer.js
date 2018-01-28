@@ -37,13 +37,12 @@ class HomeContainer extends Component {
   }
 
   handleRecentKeywordClick = async (e, { value }) => {
-    console.log('value: ', value)
     await this.props.handlefetchingTweetsGivenKeyword(value, true)
     this.setState({userEnteredKeyword: ''})
   }
 
   render() {
-    const {tweetsData, currentKeyword, fetching, keywords, keywordIdList } = this.props
+    const {tweetsData, currentKeyword, fetching, keywords, keywordIdList, error } = this.props
     return (
       <div>
         <Home
@@ -55,7 +54,8 @@ class HomeContainer extends Component {
         fetching={fetching}
         keywords={keywords}
         keywordIdList={keywordIdList}
-        handleRecentKeywordClick={this.handleRecentKeywordClick}/>
+        handleRecentKeywordClick={this.handleRecentKeywordClick}
+        error={error}/>
       </div>
     )
   }

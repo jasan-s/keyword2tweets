@@ -4,14 +4,14 @@ import { Label, List } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 export default function RecentlySearchedKeywordItem(props) {
-	const {keywordId, keywords, handleRecentKeywordClick} = props
+	const {keywordId, keywords, handleRecentKeywordClick, fetching} = props
 	let keyword = null
 	if(keywords[keywordId] !== undefined) {
 		keyword = keywords[keywordId].keyword
 	}
   return (
 		keyword
-		? <List.Item>
+		? <List.Item disabled={fetching} >
       <StyledLabel value={keyword} onClick={handleRecentKeywordClick}>{keyword}</StyledLabel>
     </List.Item>
     : null
