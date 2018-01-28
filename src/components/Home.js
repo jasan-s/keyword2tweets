@@ -42,7 +42,7 @@ export default function Home(props) {
         </StyledSearchDiv>
         <TweetList>
         {currentKeywordTweets.length > 0
-           ? <List as='ol' relaxed={true} divided={true}>
+           ? <List celled>
             {currentKeywordTweets.map((tweet, index) => (
             <TweetListItem
             tweet={tweet}
