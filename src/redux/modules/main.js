@@ -1,4 +1,4 @@
-import fetchTweetsGivenKeyword from 'helpers/api'
+import {fetchTweetsGivenKeyword, saveSearchedKeywordtoFirebase} from 'helpers/api'
 
 export const REHYDRATE_COMPLETE = 'REHYDRATE_COMPLETE'
 export const FETCHING_PENDING = 'FETCHING_PENDING'
@@ -68,6 +68,7 @@ export function setCurrentKeyword(keyword, timeSearched) {
 export function handlefetchingTweetsGivenKeyword(keyword) {
   return async (dispatch, getState) => {
     // incase the currentKeyword is the same as incoming keyword && it has been less than 1 minute return without fetching from Twitter
+    keyword = keyword.trim().toLowerCase()
     if(getState().main.currentKeyword === keyword) {
         const timeNow = Date.now()
         const timeElapsed = timeNow - getState().main.currentKeywordTimeSearched
@@ -82,6 +83,7 @@ export function handlefetchingTweetsGivenKeyword(keyword) {
       const timeNow = Date.now()
       dispatch(setCurrentKeyword(result.data.keyword, timeNow))
       dispatch(setFetchingSuccess())
+      saveSearchedKeywordtoFirebase(result.data.keyword)
       process.env.NODE_ENV === 'production' ? null : console.log('tweets Data Succecsfully fecthed from twitter')
       return
     } catch (error) {
