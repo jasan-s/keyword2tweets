@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 import Home from 'components/Home'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as ActionCreators from 'redux/modules/main'
+import * as MainActionCreators from 'redux/modules/main'
 import { withRouter } from 'react-router-dom'
 
 class HomeContainer extends Component {
 
-  static propTypes = {}
+  static propTypes = {
+    handlefetchingTweetsGivenKeyword: PropTypes.func.isRequired,
+  }
   static defaultProps = {}
   constructor(props) {
     super(props)
@@ -19,14 +21,16 @@ class HomeContainer extends Component {
     this.setState({userEnteredKeyword: value})
   }
 
-  componentDidMount() {
-    this.props.handlefetchingTweetsGivenKeyword('nfl')
+  handleSearchSubmit = async () => {
+    await this.props.handlefetchingTweetsGivenKeyword(this.state.userEnteredKeyword)
+    this.setState({userEnteredKeyword: ''})
   }
 
   render() {
     return (
       <div>
         <Home
+        handleSearchSubmit={this.handleSearchSubmit}
         handleInputChange={this.handleInputChange}
         userEnteredKeyword={this.state.userEnteredKeyword}/>
       </div>
@@ -43,7 +47,7 @@ function mapStateToProps (state, props) {
 }
 
 function mapDispatchToProps (dispatch, props) {
-  return bindActionCreators(ActionCreators, dispatch)
+  return bindActionCreators(MainActionCreators, dispatch)
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeContainer))
